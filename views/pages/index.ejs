@@ -8,5 +8,23 @@
 </head>
 <body>
     <h1>Swishbot</h1>
+    <table>
+        <tr>
+            <th>Naam</th>
+            <th>Waarde</th>
+        </tr>
+        <tr>
+            <th>Schoten</th>
+            <th><%= attempts %></th>
+        </tr>
+        <tr>
+            <th>Goals</th>
+            <th><%= goals %></th>
+        </tr>
+        <tr>
+            <th>Percentage</th>
+            <th><%= parseFloat(fgPercentage).toFixed(2) %>%</th>
+        </tr>
+    </table>
 </body>
 </html>

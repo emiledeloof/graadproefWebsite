@@ -6,21 +6,25 @@ const DBPath = "./database/database.json"
 
 let DBStructure = {
     attempts: 134,
-    attemptsMade: 129,
+    goalsMade: 129,
     fgPercentage: 0 
 }
 DBStructure.fgPercentage = parseInt(DBStructure.attemptsMade) / parseInt(DBStructure.attempts) * 100
 
-fs.readFileSync(DBPath, (e, data) => {
+let readDB = fs.readFileSync(DBPath, (e, data) => {
     if(e) throw e
-    console.log(JSON.stringify(data))
 })
 
 app.use(express.static("views/statics"))
 app.set("view engine", "ejs")
 
 app.get("/", (req, res) => {
-    res.render("pages/index")
+    let parsedData = JSON.parse(readDB)
+    res.render("pages/index", {
+        attempts: parsedData.attempts,
+        goals: parsedData.goalsMade,
+        fgPercentage: parsedData.fgPercentage
+    })
 })
 
 app.listen(PORT, () => {console.log(`Listening on port ${PORT}`)})
