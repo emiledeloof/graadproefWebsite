@@ -1,7 +1,8 @@
 const express = require("express")
 const fs = require("fs")
-const PORT = 5001   
 const app = express()
+const router = require("./routes/router")
+const PORT = 5001   
 const DBPath = "./database/database.json"
 
 let DBStructure = {
@@ -16,6 +17,8 @@ let readDB = fs.readFileSync(DBPath, (e, data) => {
 })
 
 app.use(express.static("views/statics"))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 app.set("view engine", "ejs")
 
 app.get("/", (req, res) => {
@@ -26,5 +29,7 @@ app.get("/", (req, res) => {
         fgPercentage: parsedData.fgPercentage
     })
 })
+
+app.use("/requests", router)
 
 app.listen(PORT, () => {console.log(`Listening on port ${PORT}`)})
