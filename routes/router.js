@@ -28,9 +28,16 @@ router.post("/goal", (req, res) => {
     res.send({message: "All good"}).status(200)
 })
 
-function calculatePercentage(attempts, goals){
+router.post("/attempt", (req, res) => {
+    let dbData = fs.readFileSync(DBPath)
+    let parsedData = JSON.parse(dbData)
+    parsedData.attempts = parsedData.attempts + 1
+    parsedData.fgPercentage = parseFloat(calculatePercentage(parsedData.attempts, parsedData.goalsMade))
+    fs.writeFileSync(DBPath, JSON.stringify(parsedData, null, 4))
+    res.send({message: "All good"}).status(200)
+})
 
-    console.log(goals, attempts)
+function calculatePercentage(attempts, goals){
     return (goals / attempts).toFixed(2)
 }
 
