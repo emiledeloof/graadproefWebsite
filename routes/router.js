@@ -37,6 +37,18 @@ router.post("/attempt", (req, res) => {
     res.send({message: "All good"}).status(200)
 })
 
+router.get("/getAttempts", (req, res) => {
+    let dbData = fs.readFileSync(DBPath)
+    let parsedData = JSON.parse(dbData)
+    res.send({attempts: parsedData.attempts}).status(200)
+})
+
+router.get("/getGoals", (req, res) => {
+    let dbData = fs.readFileSync(DBPath)
+    let parsedData = JSON.parse(dbData)
+    res.send({goals: parsedData.goalsMade}).status(200)
+})
+
 function calculatePercentage(attempts, goals){
     return (goals / attempts).toFixed(2)
 }
