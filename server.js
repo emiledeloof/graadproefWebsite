@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
         fgPercentage: parsedData.fgPercentage
     })
 })
+console.log("something something")
 
 app.use("/requests", router)
 
