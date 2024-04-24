@@ -22,15 +22,15 @@ app.use(express.json())
 app.set("view engine", "ejs")
 
 app.get("/", (req, res) => {
+    console.log("hello world")
     let parsedData = JSON.parse(readDB)
-    res.render("pages/index", {
+    res.render("/index", {
         attempts: parsedData.attempts,
         goals: parsedData.goalsMade,
         fgPercentage: parsedData.fgPercentage
     })
 })
-console.log("something something")
 
 app.use("/requests", router)
 
-app.listen(PORT, () => {console.log(`Listening on port ${PORT}`)})
+app.listen()
