@@ -22,9 +22,8 @@ app.use(express.json())
 app.set("view engine", "ejs")
 
 app.get("/", (req, res) => {
-    console.log("hello world")
     let parsedData = JSON.parse(readDB)
-    res.render("/index", {
+    res.render("pages/index", {
         attempts: parsedData.attempts,
         goals: parsedData.goalsMade,
         fgPercentage: parsedData.fgPercentage
@@ -33,4 +32,4 @@ app.get("/", (req, res) => {
 
 app.use("/requests", router)
 
-app.listen()
+app.listen(PORT, () => console.log("listening on port " + PORT))
