@@ -2,7 +2,7 @@ const express = require("express")
 const fs = require("fs")
 const app = express()
 const router = require("./routes/router")
-const PORT = 5001   
+const PORT = process.env.URL || 5001   
 const DBPath = "./database/database.json"
 
 let DBStructure = {
