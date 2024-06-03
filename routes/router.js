@@ -15,7 +15,8 @@ router.post("/reset", (req, res) => {
     data = {
         attempts: 0,
         goalsMade: 0,
-        fgPercentage: 0
+        fgPercentage: 0,
+        graphData: []
     }
     fs.writeFileSync(DBPath, JSON.stringify(data, null, 4))
     res.send({message: "All good"}).status(200)
