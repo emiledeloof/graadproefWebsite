@@ -27,35 +27,69 @@
             <th><%= parseFloat(fgPercentage).toFixed(2) %>%</th>
         </tr>
     </table>
-    <div class="chart-container" style="position: relative; height: 200px; width: 70vw;">
-        <canvas id="chart"></canvas>
+    <div class="chart1-container" style="position: relative; height: 200px; width: 70vw;">
+        <canvas id="chart1"></canvas>
+    </div>
+    <div class="chart2-container" style="position: relative; height: 200px; width: 70vw;">
+        <canvas id="chart2"></canvas>
     </div>
     <script>
-        console.log(new Date(Date.now()).toLocaleDateString())
-        let xlabels = []
-        let data = []
+        let xlabels1 = []
+        let data1 = []
+        let xlabels2 = []
+        let data2 = []
 
-        // <% // device.previousTemp.forEach(temp => { %>
-        //     xlabels.push(new Date(<%= // temp.createdAt %>).toLocaleTimeString())
-        //     data.push(Number((<%= // temp.temperature %>).toFixed(1)))
-        // <% //}) %>
-        const ctx = document.getElementById('chart');
+        <% graphData.forEach(dataPoint => { %>
+            xlabels1.push(<%= dataPoint.attempt %>)
+            data1.push(<%= dataPoint.goalsAmount %>)
+            xlabels2.push(<%= dataPoint.attempt %>)
+            data2.push(<%= dataPoint.fgPercentage %>)
+        <% }) %>
+        const ctx = document.getElementById('chart1');
+        const ctx2 = document.getElementById('chart2');
 
-        if(data.length > 20){
-            console.log(data.length)
-            for(i=0; i < data.length - 20; i++){
-                data.splice(0, 1)
-                xlabels.splice(0, 1)
+        if(data1.length > 20){
+            console.log(data1.length)
+            for(i=0; i < data1.length - 20; i++){
+                data1.splice(0, 1)
+                xlabels1.splice(0, 1)
             }
         }
+        if(data2.length > 20){
+            console.log(data2.length)
+            for(i=0; i < data2.length - 20; i++){
+                data2.splice(0, 1)
+                xlabels2.splice(0, 1)
+            }
+        }
+
 
         new Chart(ctx, {
         type: 'line',
         data: {
-            labels: xlabels,
+            labels: xlabels1,
             datasets: [{
             label: 'Goals',
-            data: data,
+            data: data1,
+            borderWidth: 1
+            }]
+        }, 
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    grace: 3
+                }
+            }
+        }
+        }); 
+        new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: xlabels2,
+            datasets: [{
+            label: 'Percentage',
+            data: data2,
             borderWidth: 1
             }]
         }, 

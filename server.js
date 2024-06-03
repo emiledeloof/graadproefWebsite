@@ -26,7 +26,8 @@ app.get("/", (req, res) => {
     res.render("pages/index", {
         attempts: parsedData.attempts,
         goals: parsedData.goalsMade,
-        fgPercentage: parsedData.fgPercentage
+        fgPercentage: parsedData.fgPercentage,
+        graphData: parsedData.graphData
     })
 })
 

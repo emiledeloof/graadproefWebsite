@@ -3,10 +3,7 @@ const router = express.Router()
 const fs = require("fs")
 const DBPath = "./database/database.json"
 
-let graphData = {
-    attempt: 0,
-    goalAmount: 0
-}
+let graphData = {}
 
 let data = {
     attempts: 0,
@@ -31,8 +28,8 @@ router.post("/goal", (req, res) => {
     parsedData.fgPercentage = parseFloat(calculatePercentage(parsedData.attempts, parsedData.goalsMade))
     graphData.attempt = parsedData.attempts
     graphData.goalsAmount = parsedData.goalsMade
-    let parsedGraphData = parsedData.graphData
-    parsedGraphData.append(graphData)
+    graphData.fgPercentage = parsedData.fgPercentage
+    parsedData["graphData"].push(graphData)
     fs.writeFileSync(DBPath, JSON.stringify(parsedData, null, 4))
     res.send({message: "All good"}).status(200)
 })
@@ -42,6 +39,10 @@ router.post("/attempt", (req, res) => {
     let parsedData = JSON.parse(dbData)
     parsedData.attempts = parsedData.attempts + 1
     parsedData.fgPercentage = parseFloat(calculatePercentage(parsedData.attempts, parsedData.goalsMade))
+    graphData.attempt = parsedData.attempts
+    graphData.goalsAmount = parsedData.goalsMade
+    graphData.fgPercentage = parsedData.fgPercentage
+    parsedData["graphData"].push(graphData)
     fs.writeFileSync(DBPath, JSON.stringify(parsedData, null, 4))
     res.send({message: "All good"}).status(200)
 })
