@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>Swishbot</h1>
@@ -26,6 +27,48 @@
             <th><%= parseFloat(fgPercentage).toFixed(2) %>%</th>
         </tr>
     </table>
+    <div class="chart-container" style="position: relative; height: 200px; width: 70vw;">
+        <canvas id="chart"></canvas>
+    </div>
+    <script>
+        console.log(new Date(Date.now()).toLocaleDateString())
+        let xlabels = []
+        let data = []
+
+        // <% // device.previousTemp.forEach(temp => { %>
+        //     xlabels.push(new Date(<%= // temp.createdAt %>).toLocaleTimeString())
+        //     data.push(Number((<%= // temp.temperature %>).toFixed(1)))
+        // <% //}) %>
+        const ctx = document.getElementById('chart');
+
+        if(data.length > 20){
+            console.log(data.length)
+            for(i=0; i < data.length - 20; i++){
+                data.splice(0, 1)
+                xlabels.splice(0, 1)
+            }
+        }
+
+        new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: xlabels,
+            datasets: [{
+            label: 'Goals',
+            data: data,
+            borderWidth: 1
+            }]
+        }, 
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    grace: 3
+                }
+            }
+        }
+        }); 
+    </script>
     <video src="/video.mp4" controls height="400px"></video>
 </body>
 </html>
