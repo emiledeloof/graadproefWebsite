@@ -48,16 +48,16 @@
         const ctx = document.getElementById('chart1');
         const ctx2 = document.getElementById('chart2');
 
-        if(data1.length > 20){
+        if(data1.length > 40){
             console.log(data1.length)
-            for(i=0; i < data1.length - 20; i++){
+            for(i=0; i < data1.length - 40; i++){
                 data1.splice(0, 1)
                 xlabels1.splice(0, 1)
             }
         }
-        if(data2.length > 20){
+        if(data2.length > 40){
             console.log(data2.length)
-            for(i=0; i < data2.length - 20; i++){
+            for(i=0; i < data2.length - 40; i++){
                 data2.splice(0, 1)
                 xlabels2.splice(0, 1)
             }
