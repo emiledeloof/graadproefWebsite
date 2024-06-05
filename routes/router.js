@@ -27,10 +27,12 @@ router.post("/goal", (req, res) => {
     let parsedData = JSON.parse(dbData)
     parsedData.goalsMade += 1
     parsedData.fgPercentage = parseFloat(calculatePercentage(parsedData.attempts, parsedData.goalsMade))
-    graphData.attempt = parsedData.attempts
-    graphData.goalsAmount = parsedData.goalsMade
-    graphData.fgPercentage = parsedData.fgPercentage
-    parsedData["graphData"].push(graphData)
+    // graphData.attempt = parsedData.attempts
+    // graphData.goalsAmount = parsedData.goalsMade
+    parsedData.graphData[parsedData["graphData"].length - 1].goalsAmount = parsedData.goalsMade
+    // console.log(parsedData.graphData[parsedData["graphData"].length - 1])
+    parsedData.graphData[parsedData["graphData"].length - 1].fgPercentage = parsedData.fgPercentage * 100
+    // parsedData["graphData"].push(graphData)
     fs.writeFileSync(DBPath, JSON.stringify(parsedData, null, 4))
     res.send({message: "All good"}).status(200)
 })
@@ -42,7 +44,7 @@ router.post("/attempt", (req, res) => {
     parsedData.fgPercentage = parseFloat(calculatePercentage(parsedData.attempts, parsedData.goalsMade))
     graphData.attempt = parsedData.attempts
     graphData.goalsAmount = parsedData.goalsMade
-    graphData.fgPercentage = parsedData.fgPercentage
+    graphData.fgPercentage = parsedData.fgPercentage * 100
     parsedData["graphData"].push(graphData)
     fs.writeFileSync(DBPath, JSON.stringify(parsedData, null, 4))
     res.send({message: "All good"}).status(200)

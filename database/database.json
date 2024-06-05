@@ -1,8 +1,42 @@
 {
-    "attempts": 0,
-    "goalsMade": 0,
-    "fgPercentage": 0,
+    "attempts": 7,
+    "goalsMade": 2,
+    "fgPercentage": 0.29,
     "graphData": [
-        
+        {
+            "attempt": 1,
+            "goalsAmount": 0,
+            "fgPercentage": 0
+        },
+        {
+            "attempt": 2,
+            "goalsAmount": 1,
+            "fgPercentage": 50
+        },
+        {
+            "attempt": 3,
+            "goalsAmount": 1,
+            "fgPercentage": 33
+        },
+        {
+            "attempt": 4,
+            "goalsAmount": 2,
+            "fgPercentage": 50
+        },
+        {
+            "attempt": 5,
+            "goalsAmount": 2,
+            "fgPercentage": 40
+        },
+        {
+            "attempt": 6,
+            "goalsAmount": 2,
+            "fgPercentage": 33
+        },
+        {
+            "attempt": 7,
+            "goalsAmount": 2,
+            "fgPercentage": 28.999999999999996
+        }
     ]
 }
