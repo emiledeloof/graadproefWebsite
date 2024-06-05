@@ -1,7 +1,7 @@
 {
-    "attempts": 7,
-    "goalsMade": 2,
-    "fgPercentage": 0.29,
+    "attempts": 8,
+    "goalsMade": 3,
+    "fgPercentage": 0.38,
     "graphData": [
         {
             "attempt": 1,
@@ -37,6 +37,11 @@
             "attempt": 7,
             "goalsAmount": 2,
             "fgPercentage": 28.999999999999996
+        },
+        {
+            "attempt": 8,
+            "goalsAmount": 3,
+            "fgPercentage": 38
         }
     ]
 }
